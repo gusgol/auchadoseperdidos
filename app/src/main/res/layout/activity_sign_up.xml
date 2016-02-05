@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/veryDarkGrey"
+    tools:context=".ui.activities.SignUpActivity">
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:alpha="0.85"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:visibility="gone"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:theme="@style/AppTheme.NoActionBar.SignUpToolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/LoginEditText"
+                android:layout_marginBottom="2dp"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/darkGrey"/>
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/LoginEditText"
+                android:layout_marginBottom="2dp"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/darkGrey"/>
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/LoginEditText"
+                android:layout_marginBottom="2dp"
+                android:hint="Password"
+                android:inputType="textVisiblePassword"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/darkGrey"/>
+
+            <Button
+                android:id="@+id/register"
+                style="@style/LoginButton"
+                android:text="@string/action_register"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
