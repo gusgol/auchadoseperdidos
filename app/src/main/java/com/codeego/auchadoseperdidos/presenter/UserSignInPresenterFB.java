@@ -15,6 +15,7 @@ public class UserSignInPresenterFB implements UserSignInPresenter {
 
     private static final String TAG = UserSignInPresenterFB.class.getSimpleName();
     private SignInMvpVIew signInMvpVIew;
+    private Firebase mFirebaseRef;
 
     @Override
     public void login(String email, String password) {
@@ -32,9 +33,22 @@ public class UserSignInPresenterFB implements UserSignInPresenter {
         });
     }
 
+
+    @Override
+    public boolean isLogged() {
+        if(mFirebaseRef != null) {
+            AuthData authData = mFirebaseRef.getAuth();
+            if (authData != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void attachView(SignInMvpVIew view) {
         signInMvpVIew = view;
+        mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
     }
 
     @Override

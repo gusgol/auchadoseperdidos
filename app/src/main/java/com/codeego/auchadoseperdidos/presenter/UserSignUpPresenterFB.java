@@ -1,11 +1,13 @@
 package com.codeego.auchadoseperdidos.presenter;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.codeego.auchadoseperdidos.model.entities.User;
 import com.codeego.auchadoseperdidos.utils.Constants;
 import com.codeego.auchadoseperdidos.view.SignUpMvpView;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ServerValue;
@@ -23,7 +25,7 @@ public class UserSignUpPresenterFB implements UserSignUpPresenter {
     private Firebase mFirebaseRef;
 
     @Override
-    public void createUser(String email, String password, final String name) {
+    public void createUser(String email, final String password, final String name) {
 
         email = email.toLowerCase();
         final String finalEmail = email;
@@ -50,14 +52,9 @@ public class UserSignUpPresenterFB implements UserSignUpPresenter {
                     public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                         if (firebaseError != null) {
                             Log.e(TAG, firebaseError.getMessage());
-                            mSignUpMvpView.onSignUpFailure();
-
-
-
+                            mSignUpMvpView.onSignUpFailure(firebaseError.getMessage());
                         } else {
-                            mSignUpMvpView.onSignUpSuccess();
-
-                            //TODO sign user in
+                            signUserIn(finalEmail, password);
                         }
                     }
                 });
@@ -67,7 +64,7 @@ public class UserSignUpPresenterFB implements UserSignUpPresenter {
             @Override
             public void onError(FirebaseError firebaseError) {
                 Log.e(TAG, firebaseError.getMessage());
-                mSignUpMvpView.onSignUpFailure();
+                mSignUpMvpView.onSignUpFailure(firebaseError.getMessage());
             }
         });
     }
@@ -85,4 +82,23 @@ public class UserSignUpPresenterFB implements UserSignUpPresenter {
         mSignUpMvpView = null;
 
     }
+
+    private void signUserIn(String userEmail, String password) {
+        if(mFirebaseRef != null) {
+            mFirebaseRef.authWithPassword(userEmail, password, new Firebase.AuthResultHandler() {
+                @Override
+                public void onAuthenticated(AuthData authData) {
+                    Log.i(TAG, "User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                    mSignUpMvpView.onSignUpSuccess();
+                }
+
+                @Override
+                public void onAuthenticationError(FirebaseError firebaseError) {
+                    Log.e(TAG, firebaseError.getMessage());
+                    if(mSignUpMvpView != null) mSignUpMvpView.onSignUpFailure(firebaseError.getMessage());
+                }
+            });
+        }
+    }
+
 }

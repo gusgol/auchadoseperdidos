@@ -15,6 +15,7 @@ import com.codeego.auchadoseperdidos.R;
 import com.codeego.auchadoseperdidos.presenter.UserSignInPresenter;
 import com.codeego.auchadoseperdidos.presenter.UserSignInPresenterFB;
 import com.codeego.auchadoseperdidos.view.SignInMvpVIew;
+import com.firebase.client.AuthData;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,7 +53,13 @@ public class LoginActivity extends AppCompatActivity implements SignInMvpVIew {
 
         mRegister.setOnClickListener(mOnClickedRegister);
         mSignIn.setOnClickListener(mOnClickedLogin);
+
+        if(mUserSignInPresenter.isLogged()) {
+            openMain();
+        }
     }
+
+
 
     @Override
     protected void onDestroy() {
@@ -77,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements SignInMvpVIew {
 
     @Override
     public void onLoginSuccess() {
-        Toast.makeText(getContext(), "User loged in!", Toast.LENGTH_SHORT).show();
+        openMain();
     }
 
     @Override
@@ -89,4 +96,11 @@ public class LoginActivity extends AppCompatActivity implements SignInMvpVIew {
     public Context getContext() {
         return this;
     }
+
+    private void openMain() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

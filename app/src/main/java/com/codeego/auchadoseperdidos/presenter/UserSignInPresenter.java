@@ -7,4 +7,5 @@ import com.codeego.auchadoseperdidos.view.SignInMvpVIew;
  */
 public interface UserSignInPresenter extends Presenter<SignInMvpVIew> {
     void login(String email, String password);
+    boolean isLogged();
 }

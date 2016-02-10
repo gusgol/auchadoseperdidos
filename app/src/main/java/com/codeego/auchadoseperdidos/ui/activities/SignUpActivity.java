@@ -1,6 +1,7 @@
 package com.codeego.auchadoseperdidos.ui.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -95,12 +96,14 @@ public class SignUpActivity extends AppCompatActivity implements SignUpMvpView {
 
     @Override
     public void onSignUpSuccess() {
-        Toast.makeText(getContext(), "User signed up!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
-    public void onSignUpFailure() {
-        Toast.makeText(getContext(), "Sign up failed!", Toast.LENGTH_SHORT).show();
+    public void onSignUpFailure(String errorMessage) {
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override

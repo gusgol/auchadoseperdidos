@@ -6,5 +6,5 @@ package com.codeego.auchadoseperdidos.view;
 public interface SignUpMvpView extends MvpView {
 
     void onSignUpSuccess();
-    void onSignUpFailure();
+    void onSignUpFailure(String errorMessage);
 }
