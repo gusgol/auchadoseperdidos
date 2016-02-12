@@ -12,16 +12,23 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_login">LoginActivity</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Activities and Fragments-->
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_create_lost">Create Lost Record</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <!--Labels-->
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="submit">Submit</string>
+
 
     <!-- Tabs -->
     <string name="tab_lost">Lost</string>
     <string name="tab_found">Found</string>
-
 
 
 </resources>

@@ -13,7 +13,7 @@ import com.codeego.auchadoseperdidos.ui.fragments.LostPetsFragment;
  */
 public class MainPagesAdapter extends FragmentPagerAdapter {
 
-    Context mContext;
+    private Context mContext;
 
     public MainPagesAdapter(FragmentManager fm, Context context) {
         super(fm);

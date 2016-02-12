@@ -26,7 +26,12 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activities.CreatePostActivity"
+            android:label="@string/title_activity_create_lost"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.activities.MainActivity"
+            />
     </application>
 
 </manifest>
